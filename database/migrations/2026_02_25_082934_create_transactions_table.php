@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+    Schema::create('transactions', function (Blueprint $table) {
+        $table->id();
+        $table->string('title'); // keterangan
+        $table->enum('type', ['pemasukan', 'pengeluaran']);
+        $table->bigInteger('amount');
+        $table->date('date');
+        $table->text('description')->nullable();
+        $table->timestamps();
+    });
     }
 
     /**
