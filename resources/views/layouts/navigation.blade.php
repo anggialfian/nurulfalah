@@ -18,6 +18,12 @@
                     <x-nav-link :href="route('transactions.index')" :active="request()->routeIs('transactions.*')">
                         Transaksi
                     </x-nav-link>
+                    <x-nav-link :href="route('kegiatan.index')" :active="request()->routeIs('kegiatan.*')">
+                        Kegiatan
+                    </x-nav-link>
+                    <x-nav-link :href="route('laporan')" :active="request()->routeIs('laporan')">
+                        Laporan
+                    </x-nav-link>
                 </div>
             </div>
 

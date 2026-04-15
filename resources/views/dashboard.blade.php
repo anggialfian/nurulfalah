@@ -42,5 +42,17 @@
             }
         });
     </script>
+    <div class="bg-white shadow-sm sm:rounded-lg p-6 mt-6">
+        <h3 class="text-lg font-bold mb-4">Kegiatan Mendatang</h3>
 
+        @forelse($kegiatans as $k)
+            <div class="border-b py-2">
+                <p class="font-semibold">{{ $k->nama }}</p>
+                <p class="text-sm text-gray-600">{{ $k->tanggal }}</p>
+                <p class="text-sm">{{ $k->keterangan }}</p>
+            </div>
+        @empty
+            <p>Tidak ada kegiatan mendatang</p>
+        @endforelse
+    </div>
 </x-app-layout>
