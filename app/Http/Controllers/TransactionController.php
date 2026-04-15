@@ -7,9 +7,28 @@ use App\Models\Transaction;
 
 class TransactionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $transactions = Transaction::latest()->get();
+        $query = Transaction::query();
+
+        if ($request->sort == 'terbaru') {
+            $query->orderBy('date', 'desc');
+        } elseif ($request->sort == 'terlama') {
+            $query->orderBy('date', 'asc');
+        } elseif ($request->sort == 'terbesar') {
+            $query->orderBy('amount', 'desc');
+        } elseif ($request->sort == 'terkecil') {
+            $query->orderBy('amount', 'asc');
+        } elseif ($request->sort == 'pemasukan') {
+            $query->where('type', 'pemasukan');
+        } elseif ($request->sort == 'pengeluaran') {
+            $query->where('type', 'pengeluaran');
+        } else {
+            $query->orderBy('date', 'desc'); // default
+        }
+
+        $transactions = $query->get();
+
         return view('transactions.index', compact('transactions'));
     }
 
